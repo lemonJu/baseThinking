@@ -87,3 +87,61 @@ actionConst字段
     }
 ```
 该字段定义了程序的路由，可以使用*进行匹配，可以直接使用对应的url
+
+## 程序范围Application
+该范围中储存的值在整个程序运行过程中均有效，且用户可以在任意位置访问该值
+```js
+ //保存值
+ APP.setAttr("KEY", "VAL");
+ //读取值
+ APP.getAttr("KEY")
+```
+
+## session
+session默认保存在request下通过getSession()方法获得
+
+## cookie
+获取cookie时请使用 request.getCookie()    
+而设置cookie时请使用 response.setCooki(name, value, expires, path, domain) 
+
+## request
+希望将值保存在request范围时，请使用getAttr 和 setAttr 但请注意request中保存的值仅在一次请求中有效！
+
+## interceptor --拦截器
+程序中内置了一个转换字符集的拦截器
+```js
+//接口 intercept
+exports.intercept = function(req, resp) {
+	req.setEncoding(CONFIG.server.charset);
+}
+
+```
+在自定义拦截器时只需要实现intercept接口并在web.json中进行配置即可，传入的参数为request和responnse，请注意此时的返回值有3种情况    
+
+1.	无返回值  程序按照流程依次执行    
+2.	返回false程序中断执行   
+3.	返回actionConst中配置的字段，程序返回对应的页面   
+
+## controller配置
+程序中内置了一个controller案例
+```js
+module.exports = {
+    "/test/1": function(request, response) {
+        request.doGet(function(){
+            response.getWriter().printConst("TEST")
+        })
+        request.doOther(function(){
+            response.getWriter().printConst("TEST2");
+        })
+    },
+    "/test/2": function(request, response) {
+        //response.getWriter().printConst("TEST");
+        response.sendRedirect("http://www.baidu.com")
+    }
+}
+```
+当用户访问/test/1 并使用GET方法的时候返回actionConst中TEST对应的页面，其他方法返回TEST2对应的页面，在访问test/2时，程序跳转到百度    
+
+## print.js
+该文件定义了一个统一的接口render来方便程序调用，该程序返回的是模板引擎编译后所得到的html代码，不管你使用流行的 ejs  jade 还是默认自带的模板引擎，您所需要做的修改只是这个文件，保持该文件的接口不变就保证程序的正常运行。
+
