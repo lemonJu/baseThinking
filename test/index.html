@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="tx">
+
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="./angular.js"></script>
+    <script src="./angular-route.js"></script>
+</head>
+
+<body>
+    <div class="ng-view" ng-controller="a"></div>
+</body>
+<script>
+var tx = angular.module("tx", []);
+tx.controller("a", function($scope, $http) {
+    $scope.greeting = "world"
+    $http.get("angular.js").success(function(data, status, headers, config) {
+    	console.log(headers());
+    })
+})
+/*tx.config(function($routeProvider) {
+    $routeProvider.when('/test', {
+        templateUrl: './tpls/tp1.html',
+        controller: 'a'
+    })
+})*/
+</script>
+
+</html>

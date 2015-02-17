@@ -1,0 +1,32 @@
+{
+  "name": "basethinking",
+  "version": "0.0.3",
+  "description": "a framework to develop website backstage based in nodejs",
+  "main": "thinking.js",
+  "scripts": {
+    "test": "",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lemonJu/baseThinking"
+  },
+  "keywords": [
+    "basethinking",
+    "mvc",
+    "nodejs"
+  ],
+  "author": {
+    "name": "lemonJu"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lemonJu/baseThinking/issues"
+  },
+  "homepage": "https://github.com/lemonJu/baseThinking",
+  "dependencies": {},
+  "readme": "ERROR: No README data found!",
+  "_id": "basethinking@0.1.0",
+  "_shasum": "b16e056dc9b00a8ec872dd6665e692e44865143f",
+  "_from": "basethinking@"
+}

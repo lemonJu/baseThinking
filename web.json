@@ -1,0 +1,44 @@
+{
+    "_static": {
+        "local": [],
+        ".html": "text/html",
+        ".css": "text/css",
+        ".json": "application/x-javascript",
+        ".js": "text/javascript"
+    },
+    "forbidden": ["/pages/*", "/in/*"],
+    "server": {
+        "port": 1234,
+        "charset": "utf8"
+    },
+    "actionConst": {
+        "ERROR": "./pages/ERROR.html",
+        "TEST": "./pages/TEST.html",
+        "404": "./pages/404.html"
+    },
+    "intercept": [
+        [
+            "/in/*",
+            "/out/*",
+            "../interceptor/charset"
+        ],
+        [
+            "/*",
+            "./forbidden"
+        ]
+    ],
+    "sessionContext": {
+        "maxSession": 1000,
+        "keepDestoried": true,
+        "gcTime": 5,
+        "expireTime": 10
+    },
+    "pages": {
+        "forbidden": "",
+        "error":""
+    },
+    "welcomePage": "index.html",
+    "routes": {
+        "/test/*": "/controller/test.js"
+    }
+}
